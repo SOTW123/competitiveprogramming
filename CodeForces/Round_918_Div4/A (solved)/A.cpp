@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+ifstream fin("A.in");
+
+int main() {
+	int N; 
+	cin >> N;
+
+	vector<int> once;
+	int a, b, c;
+	
+	for(int i = 0; i < N; i++) {
+		cin >> a >> b >> c;
+		if(a == b) {
+			once.push_back(c);
+		} if(b == c) { 
+			once.push_back(a);
+		} if(a == c) {
+			once.push_back(b);
+		}
+	}
+	int s = once.size();
+	for(int i = 0; i < s; i++) {
+		cout << once[i] << endl;
+	}
+
+	return 0;
+}
+
+
+

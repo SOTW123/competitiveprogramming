@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+ifstream fin("buckets.in");
+ofstream fout("buckets.out");
+
+int main() {
+	int b1, b2; // b coordinates
+	int r1, r2;	// r coordinates
+	int l1, l2; // l coordinates
+	
+	for(int i = 0; i < 10; i++) {
+		for(int j = 0; j < 10; j++) {
+			char c;
+			fin >> c;
+			if(c == 'B') {
+				b1 = i;
+				b2 = j;
+			}
+			if(c == 'R') {
+				r1 = i;
+				r2 = j;
+			}
+			if(c == 'L') {
+				l1 = i;
+				l2 = j;
+			}
+			cout << c;	
+		}
+		cout << endl;
+	}
+	cout << b1 << b2 << endl;
+	cout << r1 << r2 << endl;
+	cout << l1 << l2 << endl;
+	int v = abs(b1 - l1);
+	int h = abs(b2 - l2);
+	int distance = v + h - 1;
+	if(b1 == r1 && r1 == l1) {
+		distance += 2;
+	} else if(b2 == r2 && r2 == l2) {
+		distance += 2;
+	}
+	if(r1 > b1 || r1 > l1) {
+		distance -=2;
+	} else if(r2 > b2 || r2 > l2) {
+		distance -=2;
+	}	
+	cout << distance;
+	fout << distance;
+	return 0;
+}
+
+
+

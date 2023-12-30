@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+ifstream fin("B.in");
+
+
+int main() {
+	ll N;
+	cin >> N;
+
+	for(ll i = 0; i < N*3; i++) {
+		string currline;
+		getline(cin, currline);
+		bool a = currline.find("A") != string::npos;	
+		bool b = currline.find("B") != string::npos;
+		bool c = currline.find("C") != string::npos;
+		bool q = currline.find("?") != string::npos;
+		//cout << a << b << c << q << endl; 
+		if(q == 1) {
+			if(c == 0) {
+				cout << "C" << endl;
+			} else if(a == 0) {
+				cout << "A" << endl;
+			} else if(b == 0) {
+				cout << "B" << endl;
+			}
+		}
+	}
+	return 0;
+}
+

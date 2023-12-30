@@ -1,0 +1,66 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+
+using namespace std;
+
+ifstream fin("pipe.in");
+ofstream fout("pipe.out");
+
+typedef long long ll;
+
+int main () {
+	ll cows, canes;
+	fin >> cows >> canes;
+		
+	vector<ll> cowheights(cows, 0);
+	vector<ll> caneheights(canes,0);
+	
+	for(ll i = 0; i < cows; i++) {
+		fin >> cowheights[i];
+		//cout << cowheights[i] << ", ";
+	}
+	//cout << endl;
+	for(ll i = 0; i < canes; i++) {
+		fin >> caneheights[i];
+		//cout << caneheights[i] << ", ";
+	}
+	//cout << endl;
+	
+	vector<ll> addedheights(cows, 0);
+	vector<ll> startingch(canes,0);
+		
+	for(ll i = 0, j = 0; i < cows && j < canes; i++) {
+		if(cowheights[i] > startingch[j]) {
+			while(startingch[j] != cowheights[i]) {				
+				startingch[j]++; 
+					// 0,1,2,3
+					// none
+					// 3,4,5
+				caneheights[j]--; 
+					// 6,5,4,3
+					// none
+					// 3,2,1
+				addedheights[i]++; 
+					// 0,1,2,3
+					// none
+					// 3,4,5
+			}
+		}
+
+		// under what conditions should we move on the to the next candy cane j++
+		// set i = 0 if that happens
+		//cout << i << j << endl;
+		
+	}
+	for(ll i = 0; i < cows; i++) {
+		cowheights[i] += addedheights[i];
+	}	
+	cowheights[0]++;
+	for(ll i : cowheights) {
+		cout << i << endl;
+		fout << i << endl;
+	}	
+	return 0;
+}
