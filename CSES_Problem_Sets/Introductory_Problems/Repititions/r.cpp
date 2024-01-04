@@ -18,32 +18,56 @@ void printV(vector<T> v) {
 
 ifstream fin("r.in");
 
+void increment(int &a, bool &b) {
+	if(b) {
+		a++;
+	}
+}
 int main() {
 	string line;
 	getline(cin, line);
+
+	vector<int> A;
+	vector<int> T;
+	vector<int> G;
+	vector<int> C;
+
+	int n = line.size();
+
+	int a = 0;
+	int t = 0;
+	int g = 0;
+	int c = 0;
+
+	for(int i = 0; i < n; i++) {
+		if(line[i] == 'A') {
+			A[a]++;
+				if(line[i] != line[i+1]) {
+					A.push_back(0);
+					a++;
+				}
+		} else if(line[i] == 'T') {
+			T[t]++;
+				if(line[i] != line[i+1]) {
+					T.push_back(0);
+					t++;
+				}
+		} else if(line[i] == 'G') {
+			G[g]++;
+				if(line[i] != line[i+1]) {
+					G.push_back(0);
+					g++;
+				}
+		} else if(line[i] == 'C') {
+			C[c]++;
+				if(line[i] != line[i+1]) {
+					C.push_back(0);
+					c++;
+				}
+		}
+		
+	}
 	
-	vector<int> v(4,0);
-	// ATCG
-	int sz = line.size();
-	for(int i = 0; i < sz; i++) {
-		switch(line[i]) {
-			case 'A':
-				v[0]++;
-				break;
-			case 'T':
-				v[1]++;
-				break;
-			case 'C':
-				v[2]++;
-				break;
-			case 'G':
-				v[3]++;
-				break;
-		}		
-	}	
-	auto iterator = max_element(v.begin(), v.end());
-	
-	cout << endl << *iterator;
 
 	return 0;
 }
