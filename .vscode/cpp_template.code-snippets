@@ -1,5 +1,5 @@
 {
-	"cpp_template": {
+	"cpp-template": {
 		"prefix": "cpp",
 		"body": [
 		  "#include <bits/stdc++.h>",
@@ -15,8 +15,8 @@
 		  "void printV(vector<T> v);",
 		  "",
 		  "int main() {",
-		  "	freopen('template.out', 'w', stdout);",
-		  "	freopen('template.in', 'r', stdin);",
+		  "    freopen(\".out\", \"w\", stdout);",
+		  "    freopen(\".in\", \"r\", stdin);",
 		  "    ",
 		  "    return 0;",
 		  "}",
@@ -31,6 +31,6 @@
 		  "}",
 		  ""
 		],
-		"description": "cpp_template"
+		"description": "cpp-template"
 	  }
 }
