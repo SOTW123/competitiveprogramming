@@ -13,9 +13,9 @@ int main() {
     int b2s, b2c;
     int b3s, b3c;
 
-    fin >> b1c >> b1s;
-    fin >> b2c >> b2s;
-    fin >> b3c >> b3s;
+    cin >> b1c >> b1s;
+    cin >> b2c >> b2s;
+    cin >> b3c >> b3s;
 
     for (ll i = 0; i < 100; i++) {
         if (i % 3 == 0) {
@@ -48,7 +48,7 @@ int main() {
         }
     }
 
-    fout << b1s << endl << b2s << endl << b3s << endl;
+    cout << b1s << endl << b2s << endl << b3s << endl;
 
     return 0;
 }

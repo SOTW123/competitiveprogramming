@@ -6,15 +6,17 @@ using namespace std;
 
 class Solution {
 public:
-    void solve(){
-        unordered_set<int> s = {1,2,3,4,5,6,7,8,9,0};
-        string str = "1";
-        cout << s.count(str[0]-'0');
+    static int factorial(int n) {
+        if(n==0 || n == 1) {
+            return 1;
+        } else {
+            return n * factorial(n-1);
+        }
     }
 };
 
 int main() {
     Solution * s = new Solution();
-    s->solve();
+    cout << s->factorial(5);
     delete s;
 }
