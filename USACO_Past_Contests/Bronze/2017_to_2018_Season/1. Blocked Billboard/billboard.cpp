@@ -31,14 +31,34 @@ int main() {
     fin >> x1 >> y1 >> x2 >> y2;
     fin >> x3 >> y3 >> x4 >> y4;
     fin >> x5 >> y5 >> x6 >> y6;
-    
-    vector<vector<bool>> graph(2001, vector<bool>(2001, false));
-    
-    vector<vector<bool>> test(10, vector<bool>(10, false));
+    x1+=10;
+    y1+=10;
+    x2+=10;
+    y2+=10;
 
-    int n = test.size();
-    test[n-x1][y1-1] = 1;
-    test[n-x2][y2-1] = 1;
+    x3+=10;
+    y3+=10;
+    x4+=10;
+    y4+=10;
+
+    x5+=10;
+    y5+=10;
+    x6+=10;
+    y6+=10;
+    vector<vector<bool>> graph(2001, vector<bool>(2001, false));
+    vector<vector<bool>> test(21,vector<bool>(21,0));
+        for(int i = x1; i < x2; i++) {
+            for(int j = y1; j < y2; j++) {
+                test[i][j] = 1;
+            }
+        }
+        for(int i = x3; i < x4; i++) {
+            for(int j = y3; j < y4; j++) {
+                test[i][j] = 1;
+            }
+        }
+
+    
 
     print2V(test);
     return 0;
