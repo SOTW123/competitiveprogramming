@@ -1,35 +1,35 @@
 {
 	"cpp-template": {
-	  "prefix": "cpp",
-	  "body": [
-		"#include <bits/stdc++.h>",
-		"",
-		"using namespace std;",
-		"",
-		"typedef long long ll;",
-		"typedef double long dl;",
-		"",
-		"ifstream fin(\"${TM_FILENAME_BASE}.in\");",
-		"",
-		"template<typename T>",
-		"void printV(vector<T> v);",
-		"",
-		"int main() {",
-		"    ",
-		"    return 0;",
-		"}",
-		"",
-		"",
-		"template<typename T>",
-		"void printV(vector<T> v) {",
-		"    for(T value : v) {",
-		"        cout << value << \" \";",
-		"    }",
-		"    cout << endl;",
-		"}",
-		""
-	  ],
-	  "description": "cpp-template"
-	}
-  }
-  
+		"prefix": "cpp",
+		"body": [
+		  "#include <bits/stdc++.h>",
+		  "",
+		  "using namespace std;",
+		  "",
+		  "typedef long long ll;",
+		  "typedef double long dl;",
+		  "",
+		  "ifstream fin(\"${TM_FILENAME_BASE}.in\");",
+		  "ofstream fout(\"${TM_FILENAME_BASE}.out\");",
+		  "",
+		  "template<typename T>",
+		  "void printV(vector<T> v);",
+		  "",
+		  "int main() {",
+		  "    ",
+		  "    return 0;",
+		  "}",
+		  "",
+		  "",
+		  "template<typename T>",
+		  "void printV(vector<T> v) {",
+		  "    for(T value : v) {",
+		  "        cout << value << \" \";",
+		  "    }",
+		  "    cout << endl;",
+		  "}",
+		  ""
+		],
+		"description": "cpp-template"
+	  }
+}
