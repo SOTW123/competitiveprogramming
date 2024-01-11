@@ -5,7 +5,7 @@ using namespace std;
 typedef long long ll;
 typedef double long dl;
 
-ifstream fin("A.in");
+ifstream fin("B.in");
 
 template<typename T>
 void printV(vector<T> v);

@@ -128,6 +128,10 @@ int main() {
             
         } else if(input == "Exit") {
             c = false;
+        } else if(input == "Get List") {
+            bool yes = true;
+            bool no = -yes;
+            ptr->getList(yes,yes,yes);
         }
     }
     
