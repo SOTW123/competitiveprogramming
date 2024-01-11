@@ -10,6 +10,7 @@
 		  "typedef double long dl;",
 		  "",
 		  "ifstream fin(\"${TM_FILENAME_BASE}.in\");",
+		  "ofstream fout(\"${TM_FILENAME_BASE}.out\");",
 		  "",
 		  "template<typename T>",
 		  "void printV(vector<T> v);",
