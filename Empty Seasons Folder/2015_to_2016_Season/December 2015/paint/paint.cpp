@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <math.h>
+#include <algorithm>
+
+
+using namespace std;
+
+ifstream fin("paint.in");
+ofstream fout("paint.out");
+
+int main() {
+	int a, b, c, d;
+	fin >> a >> b;
+	fin >> c >> d;
+	
+	bool fence[101];
+	fill(begin(fence), end(fence), false);
+	
+	for(int i=a; i<b;i++) {
+		fence[i] = true;
+
+	}	
+	for(int i=c; i < d; i++) {
+		fence[i] = true;
+	}
+	
+	int painted = 0;
+	for(int i=0; i < 101; i++) {
+		if(fence[i]) {
+			painted++;
+		}
+	}
+	cout << painted;
+	fout << painted;
+	fout.close();
+	return 0;
+}

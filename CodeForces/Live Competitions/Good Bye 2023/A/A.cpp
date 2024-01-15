@@ -2,24 +2,34 @@
 
 using namespace std;
 
-typedef long long ll;
-typedef double long dl;
-
-ifstream fin("A.in");
-
-template<typename T>
-void printV(vector<T> v);
-
 int main() {
+    ifstream fin("A.in");
     
-    return 0;
-}
+    int t;
+    fin >> t;
 
+    for (int i = 0; i < t; i++) {
+        int n, k;
+        fin >> n >> k;
 
-template<typename T>
-void printV(vector<T> v) {
-    for(T value : v) {
-        cout << value << " ";
+        vector<int> b(n);
+
+        for (int j = 0; j < n; j++) {
+            fin >> b[j];
+        }
+
+        int product_b = accumulate(b.begin(), b.end(), 1, multiplies<int>());
+
+        if (2023 % product_b == 0) {
+            cout << "YES" << endl;
+            for (int j = 0; j < n; j++) {
+                cout << 2023 / product_b * b[j] << " ";
+            }
+            cout << endl;
+        } else {
+            cout << "NO" << endl;
+        }
     }
-    cout << endl;
+
+    return 0;
 }
