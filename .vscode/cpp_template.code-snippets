@@ -87,5 +87,17 @@
 		  "}"
 		],
 		"description": ""
+	  },
+	  "print2V": {
+		"prefix": "print2V",
+		"body": [
+		"template<typename T>",
+		  "void print2V(vector<vector<T>> v) {",
+		  "    for(auto sub_vector : v) {",
+		  "        printV(sub_vector);",
+		  "    }",
+		  "}",
+		],
+		"description": "yeah"
 	  }
 }
