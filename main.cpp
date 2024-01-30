@@ -2,12 +2,13 @@
 
 using namespace std;
 
+
 int main() {
-    string line = "123456";
-    string sub = line.substr(line.length() - 3, 3);
-    reverse(sub.begin(), sub.end());
-    line.replace(line.length() - 3, 3, sub);
-    cout << line << endl;
+    string s = "HELLO";
+    vector<char> v(s.begin(), s.begin()+1);
+    for(auto i : v)
+        cout << i << " ";
+    cout << endl;
 
     return 0;
 }
