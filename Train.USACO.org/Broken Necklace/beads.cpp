@@ -22,33 +22,44 @@ void printv(vector<T> v) {
 
 
 
-int rcheck(vector<char> &v, char c, int i) {
-	bool reached = 0;
-	int j = 0;
-	int counter = 0;
-	while(reached==0 && j < i) {
-		if(v[j]==c || v[j] == 'w') {
-			counter++;
-		} else 
-			reached = 1;
-		
-		j++;
-	}
-	return counter;
-}
-int lcheck(vector<char> &v, char c, int i) {
+int rightcheck(vector<char> &v, char c, int i, vector<bool> &tracker) {
 	bool reached = 0;
 	int j = i;
 	int counter = 0;
 	while(reached==0 && j > 0) {
-		if(v[j-1]==c || v[j-1] == 'w') {
+		if((v[j-1]==c || v[j-1]=='w') && tracker[j-1]==0) {
+			tracker[j-1]=1;
 			counter++;
-		} else 
+		} else
 			reached = 1;
 		
 		j--;
 	}
 	return counter;
+}
+int leftcheck(vector<char> &v, char c, int i, vector<bool> &tracker) {
+	bool reached = false;
+	int j = 0;
+	int counter = 0;
+	while((reached==0 && j < i) && tracker[j]==0) {
+		if(v[j]==c || v[j]=='w') {
+			tracker[j]=1;
+			counter++;
+		} else
+			reached = true;
+			
+		j++;
+	}
+	return counter;
+}
+bool duplicate(vector<char> &v) {
+	int n = v.size();
+	
+	for(int i = 1; i < n; i++) {
+		if(v[i-1]!=v[i])
+			return false;
+	}
+	return true;
 }
 int main() {
 	int n;
@@ -56,43 +67,22 @@ int main() {
 	string s;
 	fin >> s;
 	
-	int ans = -1;
-	int lv = 0;
-	int rv = 0;
-	int lb = 0;
-	int lr = 0;
-	for(int i = 1; i < n; i++) {
-		vector<char> left(s.begin(), s.begin()+i);
-		vector<char> right(s.begin()+i, s.end());
+	int ans = 0;
+	vector<char> necklace(s.begin(), s.end());
+	for(int i = 0; i < n; i++) {
+		vector<char> cut;
+		for(int j = i; j < n + i; j++) {
+			cut.push_back(necklace[j%n]);
+		}
 		
-		
-		int leftblue = lcheck(left, 'b', i);
-		
-		int leftred = lcheck(left, 'r', i);
-		
-		lb = max(leftblue, lb);
-		lr = max(leftred, lr);
-		lv = max(lb+lr,lv);
-		ans = max(lv, ans);
-		
-		/*
-		int leftblue = lcheck(left, 'b', i);
-		int leftred = lcheck(left, 'r', i);
-		int leftval = max(leftblue,leftred);
-		
-		int rightblue = rcheck(right, 'b', n-i);
-		int rightred = rcheck(right, 'r', n-i);
-		int rightval = max(rightblue, rightred);
-		
-		cout << leftblue << " " << leftred << endl;
-		cout << rightblue << " " << rightred << endl;
-		cout << endl;
-		
-		lv = max(leftval, lv);
-		rv = max(rightval, rv);
-		ans = max(ans, lv+rv);
-		*/
+		vector<bool> tracker(n,0);
+		int left = max(leftcheck(cut, 'r', n, tracker),leftcheck(cut, 'b', n, tracker));
+		int right = max(rightcheck(cut, 'r', n, tracker),rightcheck(cut,'b',n, tracker));
+		ans = max(ans, left+right);
+		 // count from left
+		 // count from right
 	}
+	
 	cout << ans << endl;
 	
 }
