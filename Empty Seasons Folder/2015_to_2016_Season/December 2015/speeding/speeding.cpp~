@@ -1,0 +1,80 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+ifstream fin("speeding.in");
+ofstream fout("speeding.out");
+
+
+int main() {	
+	int n;
+	int m;
+	fin >> n >> m;
+
+	// remember n and m are not constant and can be different values
+	// n is the roads sections
+	// m is bessies sections
+	// goal is to find the max bessie went over the speedlimit
+	
+	// 2 int array of 40 75s until the end
+	int actual[100] = {0};
+	int bessie[100] = {0};
+	
+	// set actual and bessie up
+	
+	int actualRoadLength;
+	int actualSpeedLimit;
+	
+	int currentRoadLength = 0;
+	int currentSpeedLimit = 0;
+
+
+	for(int i = 0; i < n; i++) {
+		fin >> actualRoadLength >> actualSpeedLimit;
+		//cout << actualRoadLength << ":" << actualSpeedLimit << ", ";
+		fill(actual + currentRoadLength, actual + currentRoadLength + actualRoadLength, actualSpeedLimit);	
+		currentRoadLength += actualRoadLength;
+	}
+	int bessieRoadLength;
+	int bessieSpeedLimit;
+	currentRoadLength = 0;
+	currentSpeedLimit = 0;
+	for(int i = 0; i < m; i++) {
+		fin >> bessieRoadLength >> bessieSpeedLimit;
+		//cout << bessieRoadLength << ":" << bessieSpeedLimit << ", ";
+		fill(bessie + currentRoadLength, bessie + currentRoadLength + bessieRoadLength, bessieSpeedLimit);
+		currentRoadLength += bessieRoadLength;
+	}
+	int currentMax = 0;
+	int theMax = 0;
+	bool isEqual = true;
+	for(int i = 0; i < 100; i++) {
+		if(bessie[i] > actual[i]) {
+			theMax = bessie[i] - actual[i];
+			if(currentMax > theMax) {
+				theMax = currentMax;
+			}
+			//over.push_back(bessie[i]-actual[i]);
+			isEqual = false;
+		}
+		currentMax = theMax;
+	}
+	if(isEqual) {
+		theMax = 0;
+	}
+	//maxOver = *max_element(over.begin(), over.end());
+	fout << theMax;
+	//fout << maxOver;
+	for(int i = 0; i < 100; i++) {
+		// // cout << actual[i] << ":" << bessie[i] << ", \n";
+	}
+	for(int i = 0; i < 100; i++) {
+		//cout << bessie[i] << ", \n";
+	}
+
+	// 
+	fout.close();
+	return 0;
+}

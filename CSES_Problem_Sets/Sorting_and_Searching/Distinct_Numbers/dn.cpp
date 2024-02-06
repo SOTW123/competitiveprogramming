@@ -24,11 +24,12 @@ int main() {
     return 0;
 }
 
-
 template<typename T>
-void printV(vector<T> v) {
-    for(T value : v) {
-        cout << value << " ";
+void printV(vector<T> v)
+{
+    for(T value : v) 
+    {
+        cout << value << " 
     }
     cout << endl;
 }

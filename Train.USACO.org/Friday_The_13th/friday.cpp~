@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+typedef double long dl;
+
+ifstream fin("friday.in");
+ofstream fout("friday.out");
+
+template<typename T> void printV(vector<T> v);
+int week_to_day(int &d) {
+	return (d+1)%8;
+}
+int main() {
+   	int n;
+	fin >> n;
+
+	int day = 0;
+	vector<int> week(7,0);
+	int year = 0;
+	int month = 0;
+	for(int i = 1900; i < n; i++) {
+		
+		
+		for(int j = 1; j <= 12; j++) {
+			// int dm = days in a month
+			int dm = 0;
+			if(j==4 || j==6 || j==9 || j==11) {
+				dm+=30;
+			} else if(j==2) {
+				dm+=28;
+				if(i%4==0) {
+					dm++;
+				}
+			} else {
+				dm+=31;
+			}
+			cout << dm << " ";
+			for(int k = 1; k <= dm; k++) {
+				if(k==13) {
+					// day of the week
+					int dw = (day + 13) % 7;
+					int l = week_to_day(dw);
+					week[l]++;
+				}
+			}				
+			day+=dm;
+		}
+	}
+	printV(week);
+
+    return 0;
+}
+
+
+template<typename T>
+void printV(vector<T> v) {
+    for(T value : v) {
+        cout << value << " ";
+    }
+    cout << endl;
+}
