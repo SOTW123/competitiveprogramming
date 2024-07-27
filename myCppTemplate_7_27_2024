@@ -1,0 +1,151 @@
+/*
+ID: siyamsz1
+TASK: 
+LANG: C++                 
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define ull unsigned long long
+
+int gcd(int a, int b);
+template<typename T> ll maxv(const vector<T> &a, char c); 
+template<typename T> ll minv(const vector<T> &a);
+template<typename T> void printv(const vector<T> &v);
+template<typename T> void printvv(vector<vector<T>> v);
+template<typename T, typename U> void printvp(vector<pair<T,U>> &vp);
+template<typename T, typename U> void printm(map<T, U> &m); 
+template<typename T> ll search(vector<T> v, ll t); // performs binary search on a sorted vector 
+int len(string &s); // returns length of a string
+template<typename T> int len(vector<T> &v); // returns length of a vector
+// finds first occurrence of target value 
+template<typename T> int find_first(vector<T> &v, T target); 
+// finds last occurrence of target value
+template<typename T> int find_last(vector<T> &v, T target); 
+// USACO.training && Old CP
+ifstream fin("main.in");
+//ifstream din("censor.in");
+//ofstream fout("censor.out");
+//#define cout fout
+//#define fin din
+
+// CF && Modern USACO
+//#define fin cin
+
+void solve() {
+
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	fin.tie(nullptr);
+	
+	int t;
+	fin >> t;	
+	while(t--)
+		solve(); // cout << solve() << endl;	
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+int gcd(int a, int b) {
+	int mx = 1;
+	for(int i = 1; i <= min(a,b); i++) {
+		if(a % i == 0 && b % i == 0) {
+			mx = max(mx, i);
+		}
+	}
+	return mx;
+}
+template<typename T> int find_last(vector<T> &v, T target) {
+	int ind = -1;
+	for(int i = 0; i < (int)v.size(); i++) {
+		if(v[i] == target)
+			ind = i;
+	}
+	return ind;
+}
+template<typename T> int find_first(vector<T> &v, T target) {
+	for(int i = 0; i < (int)v.size(); i++) {
+		if(v[i] == target)
+			return i;
+	}
+	return -1;
+}
+template<typename T> int len(vector<T> &v) {
+	return (int)v.size();
+}
+int len(string &s) {
+	return (int)s.size();
+}
+template<typename T> ll maxv(const vector<T> &a, char c) {
+	ll n = a.size();
+	ll mx = INT_MIN;
+	ll ind = -1;
+	for(ll i = 0; i < n; i++) {
+		if(a[i] > mx) {
+			mx = a[i];
+			ind = i;
+		}
+	}
+	if(c=='i')
+		return ind;
+	else if(c=='v')
+		return mx;
+}
+template<typename T> ll minv(const vector<T> &a) {
+    ll n = a.size();
+    ll mn = INT_MAX;
+    for(ll i = 0; i < n; i++) {
+        if(a[i] < mn)
+            mn = a[i];
+    }
+    return mn;
+}
+template<typename T> void printv(const vector<T> &v) {
+	for(auto i : v) {
+		cout << i << " ";
+	}
+	cout << endl;
+}
+template<typename T> void printvv(vector<vector<T>> v) {
+	for(auto i : v) {
+		printv(i);
+	}
+	cout << endl;
+}
+template<typename T, typename U> void printvp(vector<pair<T,U>> &vp) {
+	for(auto p : vp) {
+		cout << p.first << " " << p.second << endl;
+	}
+	cout << endl;
+}
+template<typename T, typename U> void printm(map<T, U> &m) {
+	for(auto e : m) {
+		cout << e.first << " " << e.second << endl;
+	}
+}
+template<typename T> ll search(vector<T> v, ll t) {
+	ll n = v.size();
+	ll left = 0;
+	ll right = n-1;
+	while(left<=right) {
+		ll mid = (left+right)/2;
+		if(t==v[mid]) {
+			return mid;
+		} else if(t > v[mid]) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}	
+	return -1;
+}
