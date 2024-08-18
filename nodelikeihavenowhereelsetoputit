@@ -1,0 +1,81 @@
+const readline = require('readline-sync');
+const Table = require('cli-table3');
+
+const table = new Table({
+  head: ['Name','Description','DueDate'],
+  wordWrap: true,
+  wrapOnWordBoundary: false,
+})
+
+const TOKEN = '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'
+const GIST_ID = 'f1713cbc82c25630fac0f502747099f6';
+const GIST_FILENAME = 'siyamtodolist.json'
+
+async function get() {
+  const req = await fetch('https://api.github.com/gists/'+GIST_ID)
+  const gist = await req.json()
+  return JSON.parse(gist.files[GIST_FILENAME].content)
+}
+async function set(data) {
+  const req = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${TOKEN}`,
+    },
+    body: JSON.stringify({
+      files: {
+        [GIST_FILENAME]: {
+          content: JSON.stringify(data),
+        },
+      },
+    }),
+  });
+
+  return req.json();
+}
+
+/*
+(async () => {
+  let data = await get();
+  //data.table_list.DEFAULT.task_list["TEST_TASK"] = newTask;
+  //const res = await set(data)
+  //console.log(res)
+  delete data.table_list.DEFAULT.task_list["TEST_TASK"] 
+  const res = await set(data)
+  console.log(res)
+  //console.log(JSON.stringify(data,null,2))
+})()
+*/
+
+let current_table;
+(async () => {
+  let data = await get();
+  current_table = data.default_table
+})()
+
+async function main() {
+  let res = readline.question("> ");
+  while (res !== 'exit') {
+    let words = res.split(/\s+/)
+    if(words[0] === 'list') {
+     if(words[1] === 'tables') {
+      let data = await get()
+      console.log(data)
+     } else if(words[1] === 'tasks') {
+      let data = await get()
+      let tasks = data.table_list[current_table].task_list
+      for (const taskKey in tasks) {
+        if (tasks.hasOwnProperty(taskKey)) {
+            const task = tasks[taskKey];
+            table.push([taskKey, task.description, task.duedate]);
+        }
+    }
+      console.log(table.toString())
+      table.length = 0
+      }
+    }
+    res = readline.question("> ")
+  }
+}
+
+main()
